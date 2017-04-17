@@ -34,6 +34,9 @@ function parseEstimoteTelemetryPacket(data) { // data is a 0-indexed byte array/
   // ****************
   if (subFrameType == ESTIMOTE_TELEMETRY_SUBFRAME_A) {
 
+    // ***** TIMESTAMP
+    var timestamp = Math.round(+new Date()/1000); 
+    
     // ***** ACCELERATION
     // byte 10 => acceleration RAW_VALUE on the X axis
     // byte 11 => acceleration RAW_VALUE on the Y axis
