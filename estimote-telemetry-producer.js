@@ -22,8 +22,8 @@ function parseEstimoteTelemetryPacket(data) { // data is a 0-indexed byte array/
   var shortIdentifier = data.toString('hex', 1, 9);
   
   // ***** TIMESTAMP
-  var timestamp = new Date().getTime();
-  
+  var tinmestamp = Math.round(+new Date()/1000);
+
   // byte 9, lower 2 bits => Telemetry subframe type
   // to fit all the telemetry data, we currently use two packets, "A" (i.e., "0")
   // and "B" (i.e., "1")
