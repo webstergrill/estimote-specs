@@ -20,7 +20,10 @@ function parseEstimoteTelemetryPacket(data) { // data is a 0-indexed byte array/
 
   // bytes 1, 2, 3, 4, 5, 6, 7, 8 => first half of the identifier of the beacon
   var shortIdentifier = data.toString('hex', 1, 9);
-
+  
+  // ***** TIMESTAMP
+  var timestamp = new Date().getTime();
+  
   // byte 9, lower 2 bits => Telemetry subframe type
   // to fit all the telemetry data, we currently use two packets, "A" (i.e., "0")
   // and "B" (i.e., "1")
@@ -33,10 +36,7 @@ function parseEstimoteTelemetryPacket(data) { // data is a 0-indexed byte array/
   // * SUBFRAME "A" *
   // ****************
   if (subFrameType == ESTIMOTE_TELEMETRY_SUBFRAME_A) {
-
-    // ***** TIMESTAMP
-    var timestamp = Math.round(+new Date()/1000); 
-    
+  
     // ***** ACCELERATION
     // byte 10 => acceleration RAW_VALUE on the X axis
     // byte 11 => acceleration RAW_VALUE on the Y axis
@@ -144,6 +144,7 @@ function parseEstimoteTelemetryPacket(data) { // data is a 0-indexed byte array/
 
     return {
       shortIdentifier,
+      timestamp,
       frameType: 'Estimote Telemetry', subFrameType: 'A', protocolVersion,
       acceleration, isMoving, motionStateDuration, pressure, gpio, errors
     };
@@ -241,6 +242,7 @@ function parseEstimoteTelemetryPacket(data) { // data is a 0-indexed byte array/
 
     return {
       shortIdentifier,
+      timestamp,
       frameType: 'Estimote Telemetry', subFrameType: 'B', protocolVersion,
       magneticField, ambientLightLevel, temperature,
       uptime, batteryVoltage, batteryLevel, errors
