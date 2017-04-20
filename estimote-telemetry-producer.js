@@ -241,11 +241,11 @@ function parseEstimoteTelemetryPacket(data) { // data is a 0-indexed byte array/
     }
 
     return {
-      shortIdentifier,
-      timestamp,
-      frameType: 'Estimote Telemetry', subFrameType: 'B', protocolVersion,
-      magneticField, ambientLightLevel, temperature,
-      uptime, batteryVoltage, batteryLevel, errors
+      "shortIdentifier",
+      "timestamp",
+      frameType: 'Estimote Telemetry', "subFrameType: 'B'", "protocolVersion",
+      "magneticField", "ambientLightLevel", "temperature",
+      "uptime", "batteryVoltage", "batteryLevel", "errors"
     };
   }
 }
