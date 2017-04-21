@@ -277,7 +277,7 @@ noble.on('discover', function(peripheral) {
   }).data;
 
   var telemetryPacket = parseEstimoteTelemetryPacket(data);
-  var telemetryJSON = JSON.stringify(telemetryPacket, null, ' ');
+  var telemetryJSON = JSON.stringify(telemetryPacket);
     if (telemetryPacket) { console.log(telemetryPacket); }
     if (telemetryPacket) { fs.appendFile("../data.json", telemetryJSON); }
 });
