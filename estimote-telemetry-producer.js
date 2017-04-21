@@ -254,6 +254,7 @@ function parseEstimoteTelemetryPacket(data) { // data is a 0-indexed byte array/
 
 var noble = require('noble');
 var fs = require('fs');
+var jsonfile = require('jsonfile')
 
 noble.on('stateChange', function(state) {
   console.log('state has changed', state);
@@ -276,11 +277,7 @@ noble.on('discover', function(peripheral) {
   }).data;
 
   var telemetryPacket = parseEstimoteTelemetryPacket(data);
-  var telemetryJSON = JSON.stringify(telemetryPacket)
-  var jsonfile = require('jsonfile')
+  var telemetryJSON = JSON.stringify(telemetryPacket);
     if (telemetryPacket) { console.log(telemetryPacket); }
     if (telemetryPacket) { fs.appendFile("data.json", telemetryJSON); }
 });
- });
-
-
