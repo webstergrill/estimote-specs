@@ -276,9 +276,11 @@ noble.on('discover', function(peripheral) {
   }).data;
 
   var telemetryPacket = parseEstimoteTelemetryPacket(data);
+  var telemetryJSON = JSON.stringify(telemetryPacket)
   var jsonfile = require('jsonfile')
     if (telemetryPacket) { console.log(telemetryPacket); }
-    if (telemetryPacket) { jsonfile.writeFileSync('../data.json', telemetryPacket, {spaces: 2}); }
+    if (telemetryPacket) { fs.appendFile("data.json", telemetryJSON); }
+});
  });
 
 
