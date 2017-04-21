@@ -253,6 +253,7 @@ function parseEstimoteTelemetryPacket(data) { // data is a 0-indexed byte array/
 // example how to scan & parse Estimote Telemetry packets with noble
 
 var noble = require('noble');
+var fs = require('fs');
 
 noble.on('stateChange', function(state) {
   console.log('state has changed', state);
